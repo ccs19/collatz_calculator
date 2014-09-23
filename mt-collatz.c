@@ -36,11 +36,13 @@ void checkArgs(int argc, char **argv){
 //Strt teh maj0r win
 void start(int argc, char **argv){
 	int i, count, number;
+	number = MIN_COLLATZ;
 	count = atoi(argv[MAX_NUM_INDEX]); //atoi converts string to int
 
 	for(i = MIN_COLLATZ; i < count+1; i++){
-		calcCollatz(&number);
+		calcCollatz(number);
 		printf("num %d = %d\n", i, number);
+		number++;
 	}
 
 }
@@ -49,13 +51,15 @@ void start(int argc, char **argv){
 
 
 //Pass the number to be Collatized!
-void calcCollatz(int* num){
-	while(*num != 1){
-		if( *num % 2 == 0 )
-			*num /= 2;
+void calcCollatz(int num){
+	while(num != 1){
+		if( num % 2 == 0 )
+			num /= 2;
 		else
-			*num = 3*(*num)+1;
+			num = 3*num+1;
+		printf("%d \n", num);
 	}
+	fflush(stdout);
 }
 
 

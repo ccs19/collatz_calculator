@@ -28,5 +28,5 @@ typedef struct{
 
 void checkArgs(int, char**);
 void start(int, char**);
-void calcCollatz(int*);
+void calcCollatz(int);
 #endif /* MT_COLLATZ_C_ */
