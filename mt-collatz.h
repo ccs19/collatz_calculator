@@ -14,7 +14,7 @@
 
 /*CONSTANTS*/
 #define VALID_ARGC 3 //Number of args expected
-#define MAX_NUM_INDEX 2 //Index of max number to calc
+#define MAX_NUM_INDEX 1 //Index of max number to calc
 #define MIN_COLLATZ 2 //Smallest value to calc a Collatz
 
 
