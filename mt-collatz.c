@@ -13,11 +13,21 @@
 int currentThreadCount = 0;
 
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv){
+	struct timespec startTime, endTime; 
+
 	checkArgs(argc, argv);
-	start(argc, argv);
+
+	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &startTime);	//get starting time
+	startCalc(argc, argv);
+	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &endTime);		//get ending time 
+
+	printHistogram();
+
+	fprintf(stderr, "%d, %d, %ld\n", atoi(argv[MAX_NUM_INDEX]), atoi(argv[THREAD_CNT_INDEX]), endTime.tv_nsec - startTime.tv_nsec);	//time in seconds? 
 	return EXIT_SUCCESS;
 }
+
 
 
 
@@ -32,7 +42,7 @@ void checkArgs(int argc, char **argv){
 
 
 //Strt teh maj0r win
-void start(int argc, char **argv){
+void startCalc(int argc, char **argv){
 	int i, count, number;
 	number = MIN_COLLATZ;
 	count = atoi(argv[MAX_NUM_INDEX]); //atoi converts string to int
@@ -61,6 +71,12 @@ int calcCollatz(int num){
 	//printf("[%-2d]\n", i);
 	fflush(stdout);
 	return i; 
+}
+
+void printHistogram(){
+	int i; 
+	for(i = 0; i < MAX_STOP_TIME; i++)
+		printf("<k = %d>, <%u>\n",i ,histogram[i]);
 }
 
 
