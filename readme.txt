@@ -4,10 +4,11 @@ Branden Sherrell
 
  
 Description:
-Project 2 for Sysnet 1.  using pThreads for calculating Collatz Sequences
+SysNet I, Project 2 - using pThreads for calculating Collatz Sequences
 
 Instructions:
-Compile code with make.  Execute the resulting myshell file.
+Compile code with "make".
+User may choose to pass in option "-noRace" for calculations supressing race conditions.  
 
 Assumptions:
 
