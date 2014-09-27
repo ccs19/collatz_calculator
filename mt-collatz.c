@@ -24,7 +24,8 @@ int main(int argc, char **argv){
 
 	printHistogram();
 
-	fprintf(stderr, "%d, %d, %ld\n", atoi(argv[MAX_NUM_INDEX]), atoi(argv[THREAD_CNT_INDEX]), endTime.tv_nsec - startTime.tv_nsec);	//time in seconds? 
+	fprintf(stderr, "%d, %d, %.9lf\n", atoi(argv[MAX_NUM_INDEX]), atoi(argv[THREAD_CNT_INDEX]), ((float)(endTime.tv_nsec - startTime.tv_nsec)/1000000000)+(endTime.tv_sec - startTime.tv_sec));	//time in seconds?
+	//printf("\n%ld\n", (endTime.tv_sec - startTime.tv_sec));
 	return EXIT_SUCCESS;
 }
 
@@ -56,19 +57,23 @@ void startCalc(int argc, char **argv){
 
 
 //Pass the number to be Collatized! Prints [num]:[stoppingTime]
-int calcCollatz(int num){
-	//printf("Calculating for %d\n", num);
-	//printf("[%-2d]:", num);
-	int i = 0; 
+int calcCollatz(unsigned long num){
+//	if(num > 150000){
+//		printf("Calculating for %ld\n", num);
+//		printf("[%-2ld]:", num);
+//	}
+	long i = 0;
 	while(num != 1){
-		if( num % 2 == 0 )
-			num = num/2;
-		else
+		if( num & (1<<0) )
 			num = 3*num+1;
-		//printf("%d \n", num);
+		else
+			num = num/2;
+		//if(num > 150000)
+			//printf("%ld \n", num);
 		i++;
 	}
-	//printf("[%-2d]\n", i);
+		if(num > 150000)
+		//printf("[%-2ld]\n", i);
 	fflush(stdout);
 	return i; 
 }

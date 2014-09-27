@@ -39,7 +39,7 @@ void startCalc(int, char**);
 
 /* Calculates the corresponding Collatz sequence for the passed integer */
 /* Returns the "stopping time" for the passed integer */
-int calcCollatz(int);
+int calcCollatz(unsigned long);
 
 /* Prints the information from the global histogram array */
 void printHistogram(); 
