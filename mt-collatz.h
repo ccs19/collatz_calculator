@@ -21,6 +21,7 @@
 #define THREAD_CNT_INDEX	2
 #define MIN_COLLATZ 		2 		//Smallest value to calc a Collatz
 #define MAX_STOP_TIME		1000	//Given as the largest stopping time required for compuation
+#define BILLION				1000000000
 
 /*STRUCTURES*/
 typedef struct{
@@ -29,7 +30,8 @@ typedef struct{
 	short numThreads;
 }Collatz;
 
-unsigned int histogram[MAX_STOP_TIME] = {0};	//global histogram array initialized to zero 
+unsigned long int currentNum = MIN_COLLATZ; 
+unsigned int histogram[MAX_STOP_TIME+1] = {0};	//+1 for index simplicity, throw away one index
 
 /* Checks passed arguments to ensure comformity to expected format */
 void checkArgs(int, char**);
@@ -43,5 +45,11 @@ int calcCollatz(unsigned long);
 
 /* Prints the information from the global histogram array */
 void printHistogram(); 
+
+/* Allocates memory for and creates the threads */
+pthread_t* createThreads(int, void*);
+
+/* Target function for each thread - loops through and calculates stopping times */
+void calcStoppingTimes(void*);
 
 #endif /* MT_COLLATZ_C_ */
