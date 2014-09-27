@@ -35,9 +35,23 @@ int main(int argc, char **argv){
 
 //Verify valid number of args
 void checkArgs(int argc, char **argv){
-	if(argc != VALID_ARGC || atoi(argv[MAX_NUM_INDEX]) < MIN_COLLATZ){
-		printf("Invalid arguments: Arg[%d] must be integral and greater than 2\n", MAX_NUM_INDEX);	//perror checks "errno" which has no indication of an error, so perror writes ".. : Success" 
+	if(argc < VALID_ARGC_MIN || argc > VALID_ARGC_MAX){										//correct number of params?
+		printf("Invalid input. Format: <Max Collatz number, Thread count, options>\n");
 		exit(EXIT_FAILURE);
+	}
+	else{	//valid argument count
+		if(argc == VALID_ARGC_MAX){
+			if(strncmp(argv[NO_RACE_INDEX], NO_RACE_STR, sizeof(NO_RACE_STR))){				//check if "options" are correct
+				printf("Unknown option. Use %s\n", NO_RACE_STR);
+				exit(EXIT_FAILURE);
+			}
+			else
+				noRace = 1; 	//indicate we wish to suppress race conditions 
+		}
+		if(atoi(argv[MAX_NUM_INDEX]) < MIN_COLLATZ){											//Max Collatz number correct? 
+			printf("Arg[%d] must be integral and greater than 2\n", MAX_NUM_INDEX);
+			exit(EXIT_FAILURE);
+		}
 	}
 }
 
@@ -45,16 +59,24 @@ void checkArgs(int argc, char **argv){
 
 //Strt teh maj0r win
 void startCalc(int argc, char **argv){
-	int maxNum, threadCnt, i; 
-	pthread_t* threads = NULL; 
+	int maxNum, threadCnt, i;
+	pthread_t* tid = NULL; 
 	maxNum = atoi(argv[MAX_NUM_INDEX]); //atoi converts string to int
 	threadCnt = atoi(argv[THREAD_CNT_INDEX]);
 
-	threads = createThreads(threadCnt, (void*) &maxNum);
-	for(i = 0; i < threadCnt; i++)
-		pthread_join(threads[i], NULL);
+	if(noRace)
+		if(pthread_mutex_init(&currentNumLock, NULL) != 0){
+			perror("Mutex init failed");
+			exit(EXIT_FAILURE);
+		}
 
-	free(threads);
+	tid = createThreads(threadCnt, (void*) &maxNum);
+	for(i = 0; i < threadCnt; i++)
+		pthread_join(tid[i], NULL);
+
+	free(tid);
+	if(noRace)
+		pthread_mutex_destroy(&currentNumLock);
 }
 
 
@@ -68,13 +90,34 @@ pthread_t* createThreads(int numThreads, void* data){
 		exit(EXIT_FAILURE);
 	}
 
-	for(i = 0; i < numThreads; i++)
-		pthread_create(&temp[i], NULL, (void*) &calcStoppingTimes, data); 
+	if(noRace)
+		for(i = 0; i < numThreads; i++)
+			pthread_create(&temp[i], NULL, (void*) &calcStoppingTimes, data); 
+	else
+		for(i = 0; i < numThreads; i++)
+			pthread_create(&temp[i], NULL, (void*) &calcStoppingTimes_noRace, data); 
 
 	return temp;
 } 
 
 
+
+void calcStoppingTimes_noRace(void* data){
+	int maxNum = *( (int*) data); 		//dereference and type cast locally
+	int stopTime; 
+
+	while(1){			//while(currentNum != maxNum){
+		pthread_mutex_lock(&currentNumLock);
+		if(currentNum == maxNum){
+			pthread_mutex_unlock(&currentNumLock);
+			break;
+		}
+		stopTime = calcCollatz(currentNum++);
+		if(stopTime <= MAX_STOP_TIME)
+			histogram[stopTime]++;
+		pthread_mutex_unlock(&currentNumLock);
+	}
+}
 
 void calcStoppingTimes(void* data){
 	int maxNum = *( (int*) data); 		//dereference and type cast locally
@@ -82,9 +125,8 @@ void calcStoppingTimes(void* data){
 
 	while(currentNum != maxNum){
 		stopTime = calcCollatz(currentNum++);
-		
 		if(stopTime <= MAX_STOP_TIME)
-			histogram[stopTime]++; 
+			histogram[stopTime]++;
 	}
 }
 

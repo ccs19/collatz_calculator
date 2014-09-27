@@ -14,14 +14,18 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <time.h>		
+#include <string.h>
 
 /*CONSTANTS*/
-#define VALID_ARGC 			3 		//Number of args expected
 #define MAX_NUM_INDEX 		1 		//Index of max number to calc
 #define THREAD_CNT_INDEX	2
+#define NO_RACE_INDEX		3
+#define VALID_ARGC_MIN		3 		//Number of args expected
+#define VALID_ARGC_MAX		4
 #define MIN_COLLATZ 		2 		//Smallest value to calc a Collatz
 #define MAX_STOP_TIME		1000	//Given as the largest stopping time required for compuation
 #define BILLION				1000000000
+#define NO_RACE_STR			"-noRace"
 
 /*STRUCTURES*/
 typedef struct{
@@ -30,6 +34,8 @@ typedef struct{
 	short numThreads;
 }Collatz;
 
+int noRace = 0; 
+pthread_mutex_t currentNumLock;  
 unsigned long int currentNum = MIN_COLLATZ; 
 unsigned int histogram[MAX_STOP_TIME+1] = {0};	//+1 for index simplicity, throw away one index
 
@@ -51,5 +57,8 @@ pthread_t* createThreads(int, void*);
 
 /* Target function for each thread - loops through and calculates stopping times */
 void calcStoppingTimes(void*);
+
+/* Same as above but with guards for preventing race conditions */
+void calcStoppingTimes_noRace(void*);
 
 #endif /* MT_COLLATZ_C_ */
