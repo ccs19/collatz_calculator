@@ -136,10 +136,10 @@ void calcStoppingTimes(void* data){
 int calcCollatz(unsigned long num){
 	int i = 0;
 	while(num != 1){
-		if( num & 1 )	//LSB set - num is odd
+		if( num & 1 )			//LSB set - num is odd
 			num = 3*num+1;
 		else
-			num = num/2;
+			num = num >> 1;	 	//Bit-wise division by 2
 		i++;
 	}
 	fflush(stdout);
