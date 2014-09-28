@@ -108,11 +108,13 @@ void calcStoppingTimes_noRace(void* data){
 
 	while(1){			//while(currentNum != maxNum){
 		pthread_mutex_lock(&currentNumLock);
-		if(currentNum == maxNum){
+		if(currentNum > maxNum){					//inclusive of last value
 			pthread_mutex_unlock(&currentNumLock);
 			break;
 		}
 		stopTime = calcCollatz(currentNum++);
+		if(stopTime == 29)
+			printf("%ld, ", currentNum-1);
 		if(stopTime <= MAX_STOP_TIME)
 			histogram[stopTime]++;
 		pthread_mutex_unlock(&currentNumLock);
@@ -123,7 +125,7 @@ void calcStoppingTimes(void* data){
 	int maxNum = *( (int*) data); 		//dereference and type cast locally
 	int stopTime; 
 
-	while(currentNum != maxNum){
+	while(currentNum <= maxNum){
 		stopTime = calcCollatz(currentNum++);
 		if(stopTime <= MAX_STOP_TIME)
 			histogram[stopTime]++;
