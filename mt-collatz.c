@@ -92,10 +92,10 @@ pthread_t* createThreads(int numThreads, void* data){
 
 	if(noRace)
 		for(i = 0; i < numThreads; i++)
-			pthread_create(&temp[i], NULL, (void*) &calcStoppingTimes, data); 
+			pthread_create(&temp[i], NULL, (void*) &calcStoppingTimes_noRace, data); 
 	else
 		for(i = 0; i < numThreads; i++)
-			pthread_create(&temp[i], NULL, (void*) &calcStoppingTimes_noRace, data); 
+			pthread_create(&temp[i], NULL, (void*) &calcStoppingTimes, data); 
 
 	return temp;
 } 
@@ -139,7 +139,7 @@ int calcCollatz(unsigned long num){
 		if( num & 1 )			//LSB set - num is odd
 			num = 3*num+1;
 		else
-			num = num >> 1;	 	//Bit-wise division by 2
+			num >>= 1;	 		//Bit-wise division by 2
 		i++;
 	}
 	fflush(stdout);
