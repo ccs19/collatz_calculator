@@ -19,15 +19,14 @@ int main(int argc, char **argv){
 	checkArgs(argc, argv);
 
 	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &startTime);	//get starting time
-	startCalc(argc, argv);
+	startCalc(atoi(argv[MAX_NUM_INDEX]), atoi(argv[THREAD_CNT_INDEX]));
 	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &endTime);		//get ending time 
 
 	printHistogram();
 
 	fprintf(stderr, "%ld %d, %.9lf\n", 	atol(argv[MAX_NUM_INDEX]), 
 										atoi(argv[THREAD_CNT_INDEX]), 
-										( (float)(endTime.tv_nsec - startTime.tv_nsec)/BILLION) + (endTime.tv_sec - startTime.tv_sec));	//time in seconds?
-
+										( (double)(endTime.tv_sec - startTime.tv_sec) + (double)(endTime.tv_nsec - startTime.tv_nsec)/BILLION) );
 	return EXIT_SUCCESS;
 }
 
@@ -57,45 +56,40 @@ void checkArgs(int argc, char **argv){
 
 
 
-//Strt teh maj0r win
-void startCalc(int argc, char **argv){
-	int maxNum, threadCnt, i;
+void startCalc(int maxNum, int threadCount){
 	pthread_t* tid = NULL; 
-	maxNum = atoi(argv[MAX_NUM_INDEX]); //atoi converts string to int
-	threadCnt = atoi(argv[THREAD_CNT_INDEX]);
 
-	if(noRace)
+	if(noRace)		//if noRace is set, we need to initialize the global mutex 
 		if(pthread_mutex_init(&currentNumLock, NULL) != 0){
 			perror("Mutex init failed");
 			exit(EXIT_FAILURE);
 		}
 
-	tid = createThreads(threadCnt, (void*) &maxNum);
-	for(i = 0; i < threadCnt; i++)
-		pthread_join(tid[i], NULL);
+	tid = createThreads(threadCount, (void*) &maxNum);
+	for(threadCount-=1; threadCount >= 0; threadCount--)
+		pthread_join(tid[threadCount], NULL);
 
 	free(tid);
-	if(noRace)
+	if(noRace)		//if noRace is set, we need to destory the mutex created earlier 
 		pthread_mutex_destroy(&currentNumLock);
 }
 
 
 
 pthread_t* createThreads(int numThreads, void* data){
-	int i; 
-
 	pthread_t* temp = malloc(sizeof(pthread_t)*numThreads);
 	if(temp == NULL){
-		perror("Error");
+		perror("Memory allocation error");
 		exit(EXIT_FAILURE);
 	}
 
 	if(noRace)
-		for(i = 0; i < numThreads; i++)
-			pthread_create(&temp[i], NULL, (void*) &calcStoppingTimes_noRace, data); 
+		for(numThreads-=1; numThreads >= 0; numThreads--)
+			pthread_create(&temp[numThreads], NULL, (void*) &calcStoppingTimes_noRace, data); 
+
 	else
-		for(i = 0; i < numThreads; i++)
-			pthread_create(&temp[i], NULL, (void*) &calcStoppingTimes, data); 
+		for(numThreads-=1; numThreads >= 0; numThreads--)
+			pthread_create(&temp[numThreads], NULL, (void*) &calcStoppingTimes, data); 
 
 	return temp;
 } 
@@ -106,15 +100,13 @@ void calcStoppingTimes_noRace(void* data){
 	int maxNum = *( (int*) data); 		//dereference and type cast locally
 	int stopTime; 
 
-	while(1){			//while(currentNum != maxNum){
+	while(1){				//while(1) because we cannot access currentNumLock non-atomically 
 		pthread_mutex_lock(&currentNumLock);
 		if(currentNum > maxNum){					//inclusive of last value
 			pthread_mutex_unlock(&currentNumLock);
 			break;
 		}
 		stopTime = calcCollatz(currentNum++);
-		if(stopTime == 29)
-			printf("%ld, ", currentNum-1);
 		if(stopTime <= MAX_STOP_TIME)
 			histogram[stopTime]++;
 		pthread_mutex_unlock(&currentNumLock);
