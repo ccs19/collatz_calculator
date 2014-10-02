@@ -1,13 +1,13 @@
 CC = gcc
 CFLAGS = -g -Wall 
 OBJECTS = *.c
-TODELETE = *.o
 NAME = mt-collatz
-MTHREAD = -lpthread
+TODELETE = $(NAME) *.o
+LIBS = -lpthread -lrt
 
 mt-collatz : $(OBJECTS)
-	$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME) $(MTHREAD)
+	$(CC) $(CFLAGS) $(OBJECTS) -o $(NAME) $(LIBS)
 
 .PHONY: clean
 clean:
-	rm -f $(NAME) $(TODELETE)
+	rm -f $(TODELETE)

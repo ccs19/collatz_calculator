@@ -10,23 +10,15 @@
 #include "mt-collatz.h"
 
 
+timer* newTimer();
+void endTimer(timer* t);
+
 int currentThreadCount = 0;
 
 
 int main(int argc, char **argv){
-	struct timespec startTime, endTime; 
-
 	checkArgs(argc, argv);
-
-	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &startTime);	//get starting time
-	startCalc(atoi(argv[MAX_NUM_INDEX]), atoi(argv[THREAD_CNT_INDEX]));
-	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &endTime);		//get ending time 
-
-	printHistogram();
-
-	fprintf(stderr, "%ld %d, %.9lf\n", 	atol(argv[MAX_NUM_INDEX]), 
-										atoi(argv[THREAD_CNT_INDEX]), 
-										( (double)(endTime.tv_sec - startTime.tv_sec) + (double)(endTime.tv_nsec - startTime.tv_nsec)/BILLION) );
+	startTime(argc, argv);
 	return EXIT_SUCCESS;
 }
 
@@ -45,9 +37,9 @@ void checkArgs(int argc, char **argv){
 				exit(EXIT_FAILURE);
 			}
 			else
-				noRace = 1; 	//indicate we wish to suppress race conditions 
+				noRace = 1; 	//indicate we wish to suppress race conditions
 		}
-		if(atoi(argv[MAX_NUM_INDEX]) < MIN_COLLATZ){											//Max Collatz number correct? 
+		if(atoi(argv[MAX_NUM_INDEX]) < MIN_COLLATZ){											//Max Collatz number correct?
 			printf("Arg[%d] must be integral and greater than 2\n", MAX_NUM_INDEX);
 			exit(EXIT_FAILURE);
 		}
@@ -57,9 +49,9 @@ void checkArgs(int argc, char **argv){
 
 
 void startCalc(int maxNum, int threadCount){
-	pthread_t* tid = NULL; 
+	pthread_t* tid = NULL;
 
-	if(noRace)		//if noRace is set, we need to initialize the global mutex 
+	if(noRace)		//if noRace is set, we need to initialize the global mutex
 		if(pthread_mutex_init(&currentNumLock, NULL) != 0){
 			perror("Mutex init failed");
 			exit(EXIT_FAILURE);
@@ -70,7 +62,7 @@ void startCalc(int maxNum, int threadCount){
 		pthread_join(tid[threadCount], NULL);
 
 	free(tid);
-	if(noRace)		//if noRace is set, we need to destory the mutex created earlier 
+	if(noRace)		//if noRace is set, we need to destory the mutex created earlier
 		pthread_mutex_destroy(&currentNumLock);
 }
 
@@ -85,22 +77,22 @@ pthread_t* createThreads(int numThreads, void* data){
 
 	if(noRace)
 		for(numThreads-=1; numThreads >= 0; numThreads--)
-			pthread_create(&temp[numThreads], NULL, (void*) &calcStoppingTimes_noRace, data); 
+			pthread_create(&temp[numThreads], NULL, (void*) &calcStoppingTimes_noRace, data);
 
 	else
 		for(numThreads-=1; numThreads >= 0; numThreads--)
-			pthread_create(&temp[numThreads], NULL, (void*) &calcStoppingTimes, data); 
+			pthread_create(&temp[numThreads], NULL, (void*) &calcStoppingTimes, data);
 
 	return temp;
-} 
+}
 
 
 
 void calcStoppingTimes_noRace(void* data){
 	int maxNum = *( (int*) data); 		//dereference and type cast locally
-	int stopTime; 
+	int stopTime;
 
-	while(1){				//while(1) because we cannot access currentNumLock non-atomically 
+	while(1){				//while(1) because we cannot access currentNumLock non-atomically
 		pthread_mutex_lock(&currentNumLock);
 		if(currentNum > maxNum){					//inclusive of last value
 			pthread_mutex_unlock(&currentNumLock);
@@ -115,7 +107,7 @@ void calcStoppingTimes_noRace(void* data){
 
 void calcStoppingTimes(void* data){
 	int maxNum = *( (int*) data); 		//dereference and type cast locally
-	int stopTime; 
+	int stopTime;
 
 	while(currentNum <= maxNum){
 		stopTime = calcCollatz(currentNum++);
@@ -126,7 +118,7 @@ void calcStoppingTimes(void* data){
 
 
 
-//Pass the number to be Collatized! 
+//Pass the number to be Collatized!
 int calcCollatz(unsigned long num){
 	int i = 0;
 	while(num != 1){
@@ -137,37 +129,53 @@ int calcCollatz(unsigned long num){
 		i++;
 	}
 	fflush(stdout);
-	return i; 
+	return i;
 }
 
 
 
 void printHistogram(){
-	int i; 
+	int i;
 	for(i = 1; i <= MAX_STOP_TIME; i++)
 		printf("<k = %d>, <%u>\n",i ,histogram[i]);
 }
 
+void startTime(int argc, char **argv){
+
+	timer *t = newTimer();
+	startCalc(atoi(argv[MAX_NUM_INDEX]), atoi(argv[THREAD_CNT_INDEX]));
+	endTimer(t);
+
+	printHistogram();
+	printResults(argv, t);
+	free(t);
+}
+
+void printResults(char** argv, timer *t){
+	long cNum = atol(argv[MAX_NUM_INDEX]);
+	int tNum = atoi(argv[THREAD_CNT_INDEX]);
+
+	fprintf(stderr, "%ld %d, %.9lf\n", 	cNum, tNum, t->total);
+}
 
 
 
+timer *newTimer(){
+	timer *t = malloc(sizeof(timer));
+	t->sec = time(0);
+	t->nsec = 0;
+	t->total = 0;
+	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &(t->ts));
+	return t;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+void endTimer(timer* t){
+	struct timespec e;
+	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &e);
+	t->nsec = (double)(e.tv_nsec - t->ts.tv_nsec)/BILLION;
+	t->sec = (double)time(0) - t->sec;
+	t->total = t->nsec + t->sec;
+}
 
 
 
