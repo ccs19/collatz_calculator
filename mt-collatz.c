@@ -98,19 +98,27 @@ pthread_t* createThreads(int numThreads, void* data){
 
 void calcStoppingTimes_noRace(void* data){
 	int maxNum = *( (int*) data); 		//dereference and type cast locally
-	int stopTime; 
+	int stopTime, count; 
 
 	while(1){				//while(1) because we cannot access currentNumLock non-atomically 
-		pthread_mutex_lock(&currentNumLock);
-		if(currentNum > maxNum){					//inclusive of last value
-			pthread_mutex_unlock(&currentNumLock);
+		count = getGlobalCount(); 
+		if(count > maxNum)					//inclusive of last value
 			break;
-		}
-		stopTime = calcCollatz(currentNum++);
+
+		stopTime = calcCollatz(count);
 		if(stopTime <= MAX_STOP_TIME)
 			histogram[stopTime]++;
-		pthread_mutex_unlock(&currentNumLock);
+		
 	}
+}
+
+long getGlobalCount(){
+	long count; 
+	pthread_mutex_lock(&currentNumLock);
+	count = currentNum++; 
+	pthread_mutex_unlock(&currentNumLock);
+
+	return count; 
 }
 
 void calcStoppingTimes(void* data){

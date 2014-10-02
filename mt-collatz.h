@@ -49,7 +49,6 @@ unsigned int histogram[MAX_STOP_TIME+1] = {0};	//+1 for index simplicity, throw 
  */
 void checkArgs(int, char**);
 
-
 /**
  *  Starting point for calculating stopping times for the value passed to main. This function 
  *  dynamically allocates memory for thread IDs, the number of which is a passed argument to main. 
@@ -109,5 +108,14 @@ void calcStoppingTimes(void*);
  *	@return 	void	- Necessary function structure when using pthreads
  */
 void calcStoppingTimes_noRace(void*);
+
+/**
+ *  Provides atomic access to the global count variable representing the current
+ *  Collatz stopping time to compute. 
+ *
+ *	@return 	Value of the global count variable
+ */
+long getGlobalCount();
+
 
 #endif /* MT_COLLATZ_C_ */
