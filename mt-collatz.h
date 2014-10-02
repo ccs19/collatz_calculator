@@ -1,7 +1,7 @@
 /*
  ============================================================================
  Name        : mt-collatz.h
- Author      : chris, Branden Sherrell
+ Author      : Christopher Schneider, Branden Sherrell
  Description : Header file for mt-collatz.c implementation
  ============================================================================
  */
@@ -14,7 +14,6 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <time.h>
-#include <sys/times.h>
 #include <string.h>
 
 
@@ -148,5 +147,13 @@ void printResults(char**, timer*);
  *	@param		time_t end   - Ending time.
  */
 double findTime( time_t start, time_t end );
+
+//Check if we want to accomodate for race comditions.
+void checkRace(int, char**);
+
+//Creates and returns a new timer structure
+timer* newTimer();
+//Fills in the timer structure variable "total."
+void endTimer(timer* t);
 
 #endif /* MT_COLLATZ_C_ */

@@ -1,7 +1,7 @@
 /*
  ============================================================================
  Name        : mt-collatz.c
- Author      : chris, Branden Sherrell
+ Author      : Christopher Schneider, Branden Sherrell
  Description : Implementation file for collatz sequence calculations using pthreads
  ============================================================================
  */
@@ -10,8 +10,7 @@
 #include "mt-collatz.h"
 
 
-timer* newTimer();
-void endTimer(timer* t);
+
 
 int currentThreadCount = 0;
 
@@ -30,20 +29,14 @@ void checkArgs(int argc, char **argv){
 		printf("Invalid input. Format: <Max Collatz number, Thread count, options>\n");
 		exit(EXIT_FAILURE);
 	}
-	else{	//valid argument count
-		if(argc == VALID_ARGC_MAX){
-			if(strncmp(argv[NO_RACE_INDEX], NO_RACE_STR, sizeof(NO_RACE_STR))){				//check if "options" are correct
-				printf("Unknown option. Use %s\n", NO_RACE_STR);
-				exit(EXIT_FAILURE);
-			}
-			else
-				noRace = 1; 	//indicate we wish to suppress race conditions
-		}
-		if(atoi(argv[MAX_NUM_INDEX]) < MIN_COLLATZ){											//Max Collatz number correct?
+	else
+		checkRace(argc, argv);
+
+	if(atoi(argv[MAX_NUM_INDEX]) < MIN_COLLATZ){											//Max Collatz number correct?
 			printf("Arg[%d] must be integral and greater than 2\n", MAX_NUM_INDEX);
 			exit(EXIT_FAILURE);
 		}
-	}
+
 }
 
 
@@ -105,6 +98,7 @@ void calcStoppingTimes_noRace(void* data){
 	}
 }
 
+
 void calcStoppingTimes(void* data){
 	int maxNum = *( (int*) data); 		//dereference and type cast locally
 	int stopTime;
@@ -128,7 +122,6 @@ int calcCollatz(unsigned long num){
 			num >>= 1;	 		//Bit-wise division by 2
 		i++;
 	}
-	fflush(stdout);
 	return i;
 }
 
@@ -154,7 +147,6 @@ void startTime(int argc, char **argv){
 void printResults(char** argv, timer *t){
 	long cNum = atol(argv[MAX_NUM_INDEX]);
 	int tNum = atoi(argv[THREAD_CNT_INDEX]);
-
 	fprintf(stderr, "%ld %d, %.9lf\n", 	cNum, tNum, t->total);
 }
 
@@ -178,7 +170,16 @@ void endTimer(timer* t){
 }
 
 
-
+void checkRace(int argc, char** argv){
+		if(argc == VALID_ARGC_MAX){
+			if(strncmp(argv[NO_RACE_INDEX], NO_RACE_STR, sizeof(NO_RACE_STR))){				//check if "options" are correct
+				printf("Unknown option. If desired, add flag %s\n", NO_RACE_STR);
+					exit(EXIT_FAILURE);
+			}
+		}
+		else
+			noRace = 1; 	//indicate we wish to suppress race conditions
+}
 
 
 
