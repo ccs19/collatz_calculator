@@ -146,7 +146,14 @@ void calcStoppingTimes(void* data){
 	}
 }
 
-unsigned long getGlobalCount(){
+/** FUNCTION getGlobalCount
+ *
+ *  Provides atomic access to the global count variable representing the current
+ *  Collatz stopping time to compute. 
+ *
+ *	@return 	Value of the global count variable
+ */
+inline unsigned long getGlobalCount(){
 	long count; 
 	pthread_mutex_lock(&currentNumLock);
 	count = currentNum++; 
