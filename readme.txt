@@ -12,7 +12,6 @@ User may choose to pass in option "-noRace" for calculations supressing race con
 
 USAGE:
 mt-collatz [Max Collatz Value] [Number of threads] [-noRace]
-Note: Argument 3 is optional. 
 
 Assumptions:
 

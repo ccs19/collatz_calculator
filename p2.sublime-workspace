@@ -1,0 +1,851 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"get",
+				"getGlobalCount"
+			],
+			[
+				"current",
+				"currentNum"
+			],
+			[
+				"Max",
+				"maxNum"
+			],
+			[
+				"calc",
+				"calcCollatz"
+			],
+			[
+				"curre",
+				"currentNum"
+			],
+			[
+				"ARG",
+				"VALID_ARGC"
+			],
+			[
+				"VALI",
+				"VALID_ARGC"
+			],
+			[
+				"pth",
+				"pthread_mutex_init"
+			],
+			[
+				"MAX",
+				"MAX_STOP_TIME"
+			],
+			[
+				"thread",
+				"threadCnt"
+			],
+			[
+				"print",
+				"printHistogram"
+			],
+			[
+				"new",
+				"new_threadData"
+			],
+			[
+				"M",
+				"MAX_NUM_INDEX"
+			],
+			[
+				"num",
+				"numThreads"
+			],
+			[
+				"exit",
+				"EXIT_FAILURE"
+			],
+			[
+				"to",
+				"toExecute"
+			],
+			[
+				"comm",
+				"commHistory"
+			],
+			[
+				"exec",
+				"execInput"
+			],
+			[
+				"com",
+				"commHistory"
+			],
+			[
+				"comman",
+				"commandNum"
+			],
+			[
+				"command",
+				"commandNum"
+			],
+			[
+				"output",
+				"outputRedirect"
+			],
+			[
+				"input",
+				"inputRedirect"
+			],
+			[
+				"chil",
+				"child_pid"
+			],
+			[
+				"out",
+				"outFile"
+			],
+			[
+				"outp",
+				"outputRedirect"
+			],
+			[
+				"re",
+				"inputRedirect"
+			],
+			[
+				"ar",
+				"argumentCount"
+			],
+			[
+				"arg",
+				"ArgumentCount"
+			],
+			[
+				"in",
+				"inputInfo"
+			],
+			[
+				"argument",
+				"argumentVector"
+			],
+			[
+				"debug",
+				"debugMode"
+			],
+			[
+				"free",
+				"freeParam_t"
+			],
+			[
+				"red",
+				"RED_CHAN"
+			],
+			[
+				"OBJ",
+				"OBJ_GRN"
+			],
+			[
+				"int",
+				"int"
+			],
+			[
+				"temp",
+				"tempArea"
+			],
+			[
+				"OB",
+				"OBJ_RED"
+			],
+			[
+				"blur",
+				"blur_kSize"
+			],
+			[
+				"B",
+				"blur_kSize"
+			],
+			[
+				"treh",
+				"threshVal"
+			],
+			[
+				"thre",
+				"tresholdDemo"
+			],
+			[
+				"kn",
+				"kernelSize"
+			],
+			[
+				"kernel",
+				"kernelSize"
+			],
+			[
+				"CV_",
+				"CV_BGR2GRAY"
+			],
+			[
+				"fram",
+				"frame_gray"
+			],
+			[
+				"de",
+				"detected_edges"
+			],
+			[
+				"src_",
+				"src_gray"
+			],
+			[
+				"Cann",
+				"CannyThreshold"
+			],
+			[
+				"src",
+				"src_img"
+			],
+			[
+				"er",
+				"erosion_size"
+			],
+			[
+				"dilation_",
+				"dilation_dst"
+			],
+			[
+				"dil",
+				"dilation_dst"
+			],
+			[
+				"ero",
+				"erosion_type"
+			],
+			[
+				"op",
+				"optimalColNum"
+			],
+			[
+				"opto",
+				"optimalRowNum"
+			],
+			[
+				"o",
+				"Original"
+			],
+			[
+				"Func",
+				"FuncCall"
+			],
+			[
+				"prin",
+				"println"
+			],
+			[
+				"new_im",
+				"new_img2"
+			],
+			[
+				"img1",
+				"img1_rio"
+			],
+			[
+				"img",
+				"img1"
+			],
+			[
+				"open",
+				"openCV"
+			],
+			[
+				"Dife",
+				"Difference2"
+			],
+			[
+				"Cv",
+				"CV_WINDOW_NORMAL"
+			],
+			[
+				"im",
+				"imToSharpen"
+			],
+			[
+				"d",
+				"dispInfo"
+			],
+			[
+				"getN",
+				"getNumClassesTaught"
+			],
+			[
+				"mN",
+				"mNumClassesTaught"
+			],
+			[
+				"set",
+				"setAge"
+			],
+			[
+				"i",
+				"i"
+			],
+			[
+				"IC",
+				"ICNC1"
+			],
+			[
+				"R",
+				"IR_RECEIEVED_BIT"
+			],
+			[
+				"eeprom",
+				"eeprom_write_byte"
+			],
+			[
+				"CON",
+				"CONF_START_DEF"
+			],
+			[
+				"CONF",
+				"CONF_START"
+			],
+			[
+				"usa",
+				"usart_writeString"
+			],
+			[
+				"program",
+				"programSetup"
+			],
+			[
+				"button",
+				"buttonNames"
+			],
+			[
+				"mem",
+				"memLocs"
+			],
+			[
+				"AT",
+				"ATOMIC_RESTORESTATE"
+			],
+			[
+				"RX",
+				"UART_RX_COMPLETE"
+			],
+			[
+				"EE",
+				"EEPROM_DOWN"
+			],
+			[
+				"V",
+				"VOL_CLR_BIT"
+			],
+			[
+				"flag",
+				"flagByte"
+			],
+			[
+				"ATO",
+				"atomic"
+			],
+			[
+				"IR",
+				"IR_RECEIEVED_BIT"
+			],
+			[
+				"falg",
+				"flagByte"
+			],
+			[
+				"te",
+				"tempTest"
+			],
+			[
+				"read",
+				"readTimesIndex"
+			],
+			[
+				"code",
+				"CODE_STOP_INDEX"
+			],
+			[
+				"CODE_S",
+				"CODE_START_INDEX"
+			],
+			[
+				"TCNT",
+				"TCNT_RESOLUTION"
+			],
+			[
+				"TIME",
+				"TIMEOUT_OVFS"
+			],
+			[
+				"A",
+				"ATOMIC_BLOCK"
+			],
+			[
+				"T",
+				"TCNT1_WAS_OVERFLOW"
+			],
+			[
+				"pos",
+				"posEdgeTime"
+			],
+			[
+				"neg",
+				"negEdgeTime"
+			],
+			[
+				"time",
+				"timerVal"
+			],
+			[
+				"stop",
+				"stopTime"
+			],
+			[
+				"readTim",
+				"readTimesIndex"
+			],
+			[
+				"TC",
+				"TCNT_RESOLUTION"
+			],
+			[
+				"is",
+				"isPositiveEdge"
+			],
+			[
+				"TN",
+				"TCNT1_WAS_OVERFLOW"
+			],
+			[
+				"start",
+				"startTime"
+			],
+			[
+				"RES",
+				"TCNT_RESOLUTION"
+			],
+			[
+				"star",
+				"startTime"
+			],
+			[
+				"TCN",
+				"TCNT1_START"
+			],
+			[
+				"ATOMIC_",
+				"ATOMIC_BLOCK"
+			],
+			[
+				"intput",
+				"inputCapture_init"
+			],
+			[
+				"I",
+				"IC_SIZE"
+			],
+			[
+				"string",
+				"stringIndex"
+			],
+			[
+				"en",
+				"endif"
+			],
+			[
+				"usrat_",
+				"usart_writeString"
+			],
+			[
+				"RET",
+				"RET_INFO"
+			],
+			[
+				"co",
+				"commandBuf"
+			],
+			[
+				"n",
+				"n"
+			],
+			[
+				"usart_write",
+				"usart_writeString"
+			],
+			[
+				"us",
+				"usart_writeString"
+			],
+			[
+				"lcd_",
+				"lcd_puts"
+			],
+			[
+				"lcd",
+				"lcd_puts"
+			],
+			[
+				"port",
+				"PORTB"
+			],
+			[
+				"lc",
+				"lcd_setXY"
+			],
+			[
+				"PORT",
+				"PORT_LED"
+			],
+			[
+				"LED",
+				"PIN_LED"
+			],
+			[
+				"RE",
+				"RX_REC_FLAG"
+			],
+			[
+				"rec",
+				"receievedData"
+			],
+			[
+				"eror",
+				"errorBitField"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "Packages/User/classProjects.sublime-build",
+	"command_palette":
+	{
+		"height": 400.0,
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"instll",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: Remove Package"
+			],
+			[
+				"isntall",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"Snippet: printf …"
+			]
+		],
+		"width": 457.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"make clean"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/branden/Desktop/Education/Fall 2014/SysNetsI/sysnet1p2/mt-collatz.c",
+		"/home/branden/Desktop/Education/Fall 2014/SysNetsI/sysnet1p2/readme.txt",
+		"/home/branden/Desktop/Education/Fall 2014/SysNetsI/sysnet1p2/mt-collatz.h",
+		"/home/branden/Desktop/Education/Fall 2014/SysNetsI/sysnet1p1.git/myshell.h",
+		"/home/branden/Desktop/Education/Fall 2014/SysNetsI/sysnet1p1.git/myshell.c",
+		"/home/branden/Programs/altera/14.0/quartus/readme.txt",
+		"/home/branden/Desktop/Education/Fall 2014/SysNetsI/sysnet1p2/noRace.txt",
+		"/home/branden/Desktop/Education/Fall 2014/SysNetsI/sysnet1p2/noRace_99.txt",
+		"/home/branden/Desktop/Education/Fall 2014/SysNetsI/sysnet1p2/race.txt",
+		"/home/branden/Downloads/makeheaders.c",
+		"/home/branden/.config/sublime-text-3/Packages/User/AVR.sublime-build",
+		"/home/branden/.config/sublime-text-3/Packages/User/classProjects.sublime-build",
+		"/home/branden/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/branden/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/home/branden/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/branden/Desktop/noRace.txt",
+		"/home/branden/Desktop/Education/Fall 2014/SysNetsI/sysnet1p2/makefile",
+		"/home/branden/Desktop/Education/Fall 2014/SysNetsI/Temp/mt-collatz.c",
+		"/home/branden/Desktop/Education/Fall 2014/SysNetsI/Temp/Current Local/mt-collatz.c",
+		"/home/branden/Desktop/School/Fall 2014/SysNetsI/sysnet1p2/mt-collatz.h",
+		"/home/branden/Desktop/School/Fall 2014/SysNetsI/sysnet1p2/mt-collatz.c",
+		"/home/branden/.bash_history",
+		"/home/branden/Desktop/School/Fall 2014/SysNetsI/sysnet1p2/mt-collatz",
+		"/home/branden/Desktop/Tank Test/build/tankTest.hex",
+		"/home/branden/Desktop/School/Fall 2014/SysNetsI/sysnet1p2/p2.sublime-project",
+		"/home/branden/.xbindkeysrc",
+		"/home/branden/Desktop/file.c",
+		"/home/branden/Desktop/School/Fall 2014/SysNetsI/mt-collatz.c",
+		"/home/branden/Desktop/School/Fall 2014/SysNetsI/sysnet1p2/makefile",
+		"/home/branden/.bashrc",
+		"/home/branden/.xinitrc",
+		"/home/branden/Desktop/i2c.h",
+		"/home/branden/Desktop/i2c.c",
+		"/home/branden/Desktop/lcd.h",
+		"/home/branden/Desktop/lcd.c",
+		"/home/branden/Desktop/Linux Stuff/AVR/Distance Sensor test/src/Makefile",
+		"/home/branden/Desktop/School/Fall 2014/SysNetsI/mt-collatz.h",
+		"/lib/modules/3.16.3-1-ARCH/build/include/linux/atmel_pwm.h",
+		"/home/branden/Desktop/Quick RGB PWM/src/quickPWM.c",
+		"/lib/modules/3.16.3-1-ARCH/build/include/linux/pwm.h",
+		"/home/branden/Desktop/School/Fall 2014/SysNetsI/sysnet1p2/readme.txt",
+		"/home/branden/Desktop/libindicator-12.10.1/INSTALL",
+		"/home/branden/Desktop/Fall 2014/SysNetsI/sysnet1p1.git/myshell.c",
+		"/home/branden/Desktop/Fall 2014/SysNetsI/sysnet1p1.git/parse.h",
+		"/home/branden/Desktop/Fall 2014/SysNetsI/sysnet1p1.git/parse.c",
+		"/home/branden/Desktop/Fall 2014/SysNetsI/sysnet1p1.git/myshell.h",
+		"/home/branden/Desktop/Fall 2014/SysNetsI/sysnet1p1/parse.h",
+		"/home/branden/Desktop/Fall 2014/SysNetsI/sysnet1p1/parse.c",
+		"/home/branden/Desktop/Fall 2014/SysNetsI/sysnet1p1/myshell.c",
+		"/home/branden/Desktop/Fall 2014/SysNetsI/sysnet1p1/myshell.h",
+		"/home/branden/Desktop/Fall 2014/SysNetsI/sysnet1p1/makefile",
+		"/home/branden/Desktop/Fall 2014/SysNetsI/sysnet1p1/readme.txt",
+		"/home/branden/Desktop/Fall 2014/SysNetsI/sysnet1p1/slow.c",
+		"/home/branden/Desktop/Fall 2014/SysNetsI/readme.txt",
+		"/home/branden/Desktop/Fall 2014/Unmanned Board/AtMega328p.prj",
+		"/home/branden/Desktop/Fall 2014/Unmanned Board/Design1 (PCB - Transfer from Schematic to PCB.).txt",
+		"/home/branden/Desktop/SysNetsI/sysnet1p1/myshell.c",
+		"/home/branden/Desktop/SysNetsI/sysnet1p1/myshell.h",
+		"/home/branden/Desktop/OpenCV/test.cpp",
+		"/home/branden/Desktop/myshell.c",
+		"/home/branden/Desktop/myshell.h",
+		"/lib/modules/3.16.1-1-ARCH/build/include/uapi/linux/sched.h",
+		"/home/branden/Desktop/temp/bash-2.05b/error.c",
+		"/lib/modules/3.16.1-1-ARCH/build/include/asm-generic/bitops/sched.h",
+		"/home/branden/Desktop/temp/bash-2.05b/bashhist.c",
+		"/home/branden/Desktop/temp/bash-2.05b/array.c",
+		"/home/branden/Desktop/temp/bash-2.05b/Makefile.in",
+		"/home/branden/Desktop/SysNetsI/sysnet1p1/readme.txt",
+		"/home/branden/Desktop/OpenCV/Past/TresholdPer.cpp",
+		"/home/branden/Desktop/project1/myshell.c",
+		"/home/branden/Desktop/project1/makefile",
+		"/home/branden/Desktop/project1/myshell.h",
+		"/home/branden/sketchbook/libraries/readme.txt",
+		"/home/branden/Desktop/sysnet1p1/myshell.c",
+		"/home/branden/Desktop/sysnet1p1/makefile",
+		"/home/branden/Desktop/Linux Stuff/Spring 2014/Data Structures II/Projects/Proj 4 - Bin Packing/Bin Packing/Bin Packing/fileOps.h",
+		"/home/branden/Desktop/Linux Stuff/Spring 2014/Data Structures II/Projects/Proj 4 - Bin Packing/Bin Packing/Bin Packing/bin.h",
+		"/home/branden/Desktop/Linux Stuff/Spring 2014/Data Structures II/Projects/Proj 4 - Bin Packing/Bin Packing/Bin Packing/sort.h",
+		"/home/branden/Desktop/Linux Stuff/Spring 2014/Data Structures II/Projects/Proj 4 - Bin Packing/Bin Packing/Bin Packing/main.c",
+		"/home/branden/Desktop/testMain.c",
+		"/home/branden/Desktop/smartgithg-6_0_6/readme-linux.txt",
+		"/home/branden/Desktop/test.c",
+		"/home/branden/Desktop/Color Tracking - OpenCV/makefile",
+		"/home/branden/Desktop/project1/Makefile",
+		"/home/branden/Desktop/project1/fileList.c",
+		"/home/branden/Desktop/project1/directionTest.c",
+		"/home/branden/Desktop/directionTest.c",
+		"/home/branden/Desktop/Color Tracking - OpenCV/objTracking.cpp",
+		"/home/branden/Desktop/OpenCV/Past/VideoCapture.cpp",
+		"/home/branden/Desktop/OpenCV/Past/DisplayPerLayer.cpp",
+		"/home/branden/Desktop/OpenCV/Past/TresholdPerLayer.cpp",
+		"/home/branden/Desktop/OpenCV/Past/TresholdingPerLayer.cpp",
+		"/home/branden/Desktop/Tank Test/src/tank.c",
+		"/home/branden/Desktop/Tank Test/tank.c",
+		"/home/branden/Desktop/journalLog.txt",
+		"/home/branden/Desktop/OpenCV/Past/AverageFilter.cpp",
+		"/home/branden/Desktop/OpenCV/Past/Conv2Gray.cpp",
+		"/home/branden/Desktop/OpenCV/Past/AlphaBeta_ContrastEnhance.cpp",
+		"/home/branden/Desktop/untitled.c",
+		"/home/branden/Desktop/OpenCV/Past/ImageBlending.cpp",
+		"/home/branden/Desktop/OpenCV/Past/CreateRandomImage.cpp",
+		"/home/branden/Downloads/main.c",
+		"/usr/avr/include/util/atomic.h",
+		"/home/branden/Desktop/dropped text.txt",
+		"/home/branden/Desktop/OpenCV/makefile",
+		"/home/branden/Desktop/C++/Class Test/main.cpp",
+		"/home/branden/Desktop/C++/Vectors/main.cpp",
+		"/home/branden/Desktop/C++/Term Test/main.cpp",
+		"/home/branden/Desktop/textFile.txt",
+		"/home/branden/Desktop/C++/main.cpp",
+		"/home/branden/Desktop/C++/makefile",
+		"/usr/include/opencv/cv.h",
+		"/usr/include/opencv/highgui.h",
+		"/usr/include/opencv2/core/core_c.h",
+		"/home/branden/.config/sublime-text-3/Packages/Theme - Spacegray/base16-eighties.dark.tmTheme",
+		"/home/branden/Desktop/C++/test.c",
+		"/home/branden/Desktop/C++/test.cpp",
+		"/home/branden/Desktop/LineFollower/src/lineFollower.c",
+		"/home/branden/Desktop/Infrared Remote/src/usart.h",
+		"/home/branden/Desktop/Infrared Remote/src/usart.c",
+		"/home/branden/Desktop/Infrared Remote/src/Timeout Version/IRremote.c",
+		"/home/branden/Desktop/Infrared Remote/src/IRremote.c",
+		"/home/branden/Desktop/Linux Stuff/AVR/uartWirelessDebugger/src/uartWirelessDebugger.c",
+		"/home/branden/Desktop/output.txt",
+		"/home/branden/Desktop/Linux Stuff/AVR/uartTest/src/uartTest.c",
+		"/home/branden/Programs/matlab/readme.txt",
+		"/home/branden/Programs/matlab/bin/matlab",
+		"/home/branden/Programs/matlab/bin/license.txt"
+	],
+	"find":
+	{
+		"height": 47.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"CLOCK_PROCESS_CPUTIME_ID",
+			"Threads",
+			"threads",
+			"CLOCK_PROCESS_CPUTIME_ID",
+			"ERR_STR",
+			"that",
+			"*/\n",
+			"rfm_tx",
+			"RFM12_BAND_912",
+			"extern",
+			"RFM12_BAND_912",
+			"912",
+			"tty_struct"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 105.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "p2.sublime-project",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"avrt",
+				"~/Desktop/lcdTest/avrTest.c"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+		"last_automatic_layout":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		]
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+		"max_columns": 2
+	}
+}

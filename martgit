@@ -1,0 +1,67 @@
+TAR(1)                                                                                    GNU TAR Manual                                                                                   TAR(1)
+
+
+
+NNAAMMEE
+       tar - an archiving utility
+
+SSYYNNOOPPSSIISS
+   TTrraaddiittiioonnaall uussaaggee
+       ttaarr {AA|cc|dd|rr|tt|uu|xx}[GGnnSSkkUUWWOOmmppssMMBBiiaajjJJzzZZhhPPllRRvvwwoo] [_A_R_G...]
+
+   UUNNIIXX--ssttyyllee uussaaggee
+       ttaarr --AA [_O_P_T_I_O_N_S] _A_R_C_H_I_V_E _A_R_C_H_I_V_E
+
+       ttaarr --cc [--ff _A_R_C_H_I_V_E] [_O_P_T_I_O_N_S] [_F_I_L_E...]
+
+       ttaarr --dd [--ff _A_R_C_H_I_V_E] [_O_P_T_I_O_N_S] [_F_I_L_E...]
+
+       ttaarr --tt [--ff _A_R_C_H_I_V_E] [_O_P_T_I_O_N_S] [_M_E_M_B_E_R...]
+
+       ttaarr --rr [--ff _A_R_C_H_I_V_E] [_O_P_T_I_O_N_S] [_F_I_L_E...]
+
+       ttaarr --uu [--ff _A_R_C_H_I_V_E] [_O_P_T_I_O_N_S] [_F_I_L_E...]
+
+       ttaarr --xx [--ff _A_R_C_H_I_V_E] [_O_P_T_I_O_N_S] [_M_E_M_B_E_R...]
+
+   GGNNUU--ssttyyllee uussaaggee
+       ttaarr {----ccaatteennaattee|----ccoonnccaatteennaattee}} [[_O_P_T_I_O_N_S] _A_R_C_H_I_V_E _A_R_C_H_I_V_E
+
+       ttaarr ----ccrreeaattee [----ffiillee _A_R_C_H_I_V_E] [_O_P_T_I_O_N_S] [_F_I_L_E...]
+
+       ttaarr {----ddiiffff|----ccoommppaarree} [----ffiillee _A_R_C_H_I_V_E] [_O_P_T_I_O_N_S] [_F_I_L_E...]
+
+       ttaarr ----ddeelleettee [----ffiillee _A_R_C_H_I_V_E] [_O_P_T_I_O_N_S] [_M_E_M_B_E_R...]
+
+       ttaarr ----aappppeenndd [--ff _A_R_C_H_I_V_E] [_O_P_T_I_O_N_S] [_F_I_L_E...]
+
+       ttaarr ----lliisstt [--ff _A_R_C_H_I_V_E] [_O_P_T_I_O_N_S] [_M_E_M_B_E_R...]
+
+       ttaarr ----tteesstt--llaabbeell [----ffiillee _A_R_C_H_I_V_E] [_O_P_T_I_O_N_S] [_L_A_B_E_L...]
+
+       ttaarr ----uuppddaattee [----ffiillee _A_R_C_H_I_V_E] [_O_P_T_I_O_N_S] [_F_I_L_E...]
+
+       ttaarr ----uuppddaattee [--ff _A_R_C_H_I_V_E] [_O_P_T_I_O_N_S] [_F_I_L_E...]
+
+       ttaarr {----eexxttrraacctt|----ggeett} [--ff _A_R_C_H_I_V_E] [_O_P_T_I_O_N_S] [_M_E_M_B_E_R...]
+
+NNOOTTEE
+       This manpage is a short description of GNU ttaarr.  For a detailed discussion, including examples and usage recommendations, refer to the GGNNUU TTaarr MMaannuuaall available in texinfo format.  If the
+       iinnffoo reader and the tar documentation are properly installed on your system, the command
+
+           iinnffoo ttaarr
+
+       should give you access to the complete manual.
+
+       You can also view the manual using the info mode in eemmaaccss(1), or find it in various formats online at
+
+           hhttttpp::////wwwwww..ggnnuu..oorrgg//ssooffttwwaarree//ttaarr//mmaannuuaall
+
+       If any discrepancies occur between this manpage and the GGNNUU TTaarr MMaannuuaall, the later shall be considered the authoritative source.
+
+DDEESSCCRRIIPPTTIIOONN
+       GNU ttaarr is an archiving program designed to store multiple files in a single file (an aarrcchhiivvee), and to manipulate such archives.  The archive can be either a regular  file  or  a  device
+       (e.g. a tape drive, hence the name of the program, which stands for ttape aarrchiver), which can be located either on the local or on a remote machine.
+
+   OOppttiioonn ssttyylleess
+       Options to GNU ttaarr can be given in three different styles.  In ttrraaddiittiioonnaall ssttyyllee, the first argument is a cluster of option letters and all subsequent arguments supply 
