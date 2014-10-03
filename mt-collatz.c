@@ -1,3 +1,4 @@
+
 /*
  ============================================================================
  Name        : mt-collatz.c
@@ -8,7 +9,7 @@
 
 
 #include "mt-collatz.h"
-
+#include <sys/resource.h>
 
 
 int main(int argc, char **argv){
@@ -113,17 +114,17 @@ pthread_t* createThreads(int numThreads, void* data){
 void calcStoppingTimes_noRace(void* data){
 	int maxNum = *( (int*) data); 		//dereference and type cast locally
 	int stopTime;
-	unsigned long count; 
+	unsigned long count;
 
-	while(1){						//while(1) because we cannot access currentNumLock non-atomically 
-		count = getGlobalCount(); 	//inline atomic access function 
+	while(1){						//while(1) because we cannot access currentNumLock non-atomically
+		count = getGlobalCount(); 	//inline atomic access function
 		if(count > maxNum)			//inclusive of last value
 			break;
 
 		stopTime = calcCollatz(count);
-		assert(stopTime <= MAX_STOP_TIME); 
+		assert(stopTime <= MAX_STOP_TIME);
 		histogram[stopTime]++;
-		
+
 	}
 }
 /** FUNCTION: calcStoppingTimes
@@ -146,20 +147,13 @@ void calcStoppingTimes(void* data){
 	}
 }
 
-/** FUNCTION getGlobalCount
- *
- *  Provides atomic access to the global count variable representing the current
- *  Collatz stopping time to compute. 
- *
- *	@return 	Value of the global count variable
- */
-inline unsigned long getGlobalCount(){
-	long count; 
+unsigned long getGlobalCount(){
+	long count;
 	pthread_mutex_lock(&currentNumLock);
-	count = currentNum++; 
+	count = currentNum++;
 	pthread_mutex_unlock(&currentNumLock);
 
-	return count; 
+	return count;
 }
 
 /** FUNCTION: calcCollatz
@@ -193,7 +187,7 @@ int calcCollatz(unsigned long num){
 void printHistogram(){
 	int i;
 	for(i = 1; i <= MAX_STOP_TIME; i++)
-		printf("<k = %d>, <%u>\n",i ,histogram[i]);
+		fprintf(stdout, "<k = %d>, <%u>\n",i ,histogram[i]);
 }
 
 /** FUNCTION startTime
@@ -205,7 +199,6 @@ void printHistogram(){
  *	@param 	    char**  - argv from main
  */
 void startTime(int argc, char **argv){
-
 	timer *t = newTimer();
 	startCalc(atoi(argv[MAX_NUM_INDEX]), atoi(argv[THREAD_CNT_INDEX]));
 	endTimer(t);
@@ -245,7 +238,7 @@ timer *newTimer(){
 	t->sec = time(0);
 	t->nsec = 0;
 	t->total = 0;
-	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &(t->ts));
+	clock_gettime(CLOCK_REALTIME, &(t->ts));
 	return t;
 }
 
@@ -258,7 +251,7 @@ timer *newTimer(){
  */
 void endTimer(timer* t){
 	struct timespec e;
-	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &e);
+	clock_gettime(CLOCK_REALTIME, &e);
 	t->nsec = (double)(e.tv_nsec - t->ts.tv_nsec)/BILLION;
 	t->sec = (double)time(0) - t->sec;
 	t->total = t->nsec + t->sec;
@@ -282,8 +275,6 @@ void checkRace(int argc, char** argv){
 		else
 			noRace = 1; 	//indicate we wish to suppress race conditions
 }
-
-
 
 
 
