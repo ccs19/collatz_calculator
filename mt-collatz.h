@@ -38,7 +38,15 @@ unsigned long int currentNum = MIN_COLLATZ; 	//For Threads, current number in se
 unsigned int histogram[MAX_STOP_TIME+1] = {0};	//+1 for index simplicity, throw away one index
 
 
-/**Structures*/
+/** STRUCT: timer
+ *
+ * 	Struct to track the time it takes to calculate the collatz numbers
+ *
+ * 	@param double 			sec	    - Starting time, in seconds.
+ * 	@param double 			nsec	- Starting time, in nanoseconds
+ * 	@param double 			total	- Total time, sec + nsec.
+ * 	@param struct timespec 	ts		- Struct used to calculate to nanoseconds.
+ */
 typedef struct{
 	double sec;
 	double nsec;
@@ -47,20 +55,21 @@ typedef struct{
 }timer;
 
 
-/**
+/** FUNCTION: checkArgs
+ *
  *  Checks the passed arguments to ensure comformity to the expexted format:
  *  				./mt-collatz <Maximum value> <Number of threads> <options>
  *
  *  The program will terminate with an error to stdout if a syntax error is found.
  *
- *	@param		Number of arguments passed from the OS to main
+ *	@param		int Number of arguments passed from the OS to main
  *	@param		Char* array of passed arguments
- *	@return 	No return value, program exits on improper input syntax
  */
 void checkArgs(int, char**);
 
 
-/**
+/** FUNCTION: startCalc
+ *
  *  Starting point for calculating stopping times for the value passed to main. This function
  *  dynamically allocates memory for thread IDs, the number of which is a passed argument to main.
  *  Each thread is created and given a target function by an interal call to createThreads().
@@ -72,10 +81,8 @@ void checkArgs(int, char**);
  */
 void startCalc(int, int);
 
-/* Calculates the corresponding Collatz sequence for the passed integer */
-/* Returns the "stopping time" for the passed integer */
-
-/**
+/** FUNCTION: calcCollatz
+ *
  *  Calculates the stopping time for the passed in parameter. This function has been optimized
  *  to use bit-wise operations.
  *
@@ -84,7 +91,8 @@ void startCalc(int, int);
  */
 int calcCollatz(unsigned long);
 
-/**
+/** FUNCTION: printHistogram
+ *
  *  Prints the global histogram array to stdout with the following format:
  *  			<k = 1> <Stopping Time>
  *
@@ -92,7 +100,8 @@ int calcCollatz(unsigned long);
  */
 void printHistogram(); 
 
-/**
+/** FUNCTION: createThreads
+ *
  *  Dynamically allocates memory for the required number of threads.
  *
  *	@param		The number of threads to allocate memory for
@@ -101,7 +110,8 @@ void printHistogram();
  */
 pthread_t* createThreads(int, void*);
 
-/**
+/** FUNCTION: calcStoppingTimes
+ *
  *  Target function for created threads. Interally the program loops until until all stoping times
  *  have been exhausted in the set [2, N], where N represents the maximum Collatz stopping time of
  *  interest. Note that N is the first argument passed from the OS.
@@ -111,7 +121,8 @@ pthread_t* createThreads(int, void*);
  */
 void calcStoppingTimes(void*);
 
-/**
+/** FUNCTION calcStoppingTimes_noRace
+ *
  *  This function is exactly identical to calcStoppingTimes(), but implements the necessary
  *  safeguards to prevent race conditions using mutexes.
  *
@@ -120,7 +131,8 @@ void calcStoppingTimes(void*);
  */
 void calcStoppingTimes_noRace(void*);
 
-/**
+/** FUNCTION: startTime
+ *
  *  This function begins by getting the starting time, calling startCalc, then getting the ending time.
  *	It then calls the printHistogram and printResults functions to show the results.
  *
@@ -129,17 +141,18 @@ void calcStoppingTimes_noRace(void*);
  */
 void startTime(int, char**);
 
-/**
+/** FUNCTION: printResults
+ *
  *  This function merely prints the results of the calculations in the format:
  *  <Max collatz number>, <number of threads>, <time required>
  *
- *	@param		struct timespec	 - First timespec is starting time.
- *	@param		struct timespec	 - Second timespec is ending time.
+ *	@param		timer*				 - Struct containing calculated times.
  *	@param 	    char**  		     - argv from main
  */
 void printResults(char**, timer*);
 
-/**
+/** FUNCTION: findTime
+ *
  *  Calculates the time in seconds or milliseconds to help make the printResults
  *  fprintf statement less impossible to read.
  *
@@ -148,12 +161,35 @@ void printResults(char**, timer*);
  */
 double findTime( time_t start, time_t end );
 
-//Check if we want to accomodate for race comditions.
+/** FUNCTION: checkRace
+ *
+ *  Calculates the time in seconds or milliseconds to help make the printResults
+ *  fprintf statement less impossible to read.
+ *
+ *	@param		time_t start - Starting time.
+ *	@param		time_t end   - Ending time.
+ */
 void checkRace(int, char**);
 
-//Creates and returns a new timer structure
+/** FUNCTION: newTimer
+ *
+ *  Generates a new timer struct and returns a pointer.
+ *  t->sec is set to the current time
+ *  t->nsec is set to 0
+ *  t->total is set to 0
+ *  t->ts is set to current time (To track nanoseconds)
+ *
+ *	@return 	timer*		- Pointer to initialized timer struct
+ */
 timer* newTimer();
-//Fills in the timer structure variable "total."
-void endTimer(timer* t);
+
+/** FUNCTION: endTimer
+ *
+ *  Calculates the stopping point to nanoseconds and places the result in
+ * 	t->total
+ *
+ *	@param		timer* t 	- Time tracking struct.
+ */
+void endTimer(timer*);
 
 #endif /* MT_COLLATZ_C_ */
